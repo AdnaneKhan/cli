@@ -861,7 +861,8 @@ const definitions = {
     default: false,
     type: Boolean,
     description: `
-      If true, npm does not run scripts specified in package.json files.
+      If true, npm does not run scripts specified in package.json files. This option
+      applies to all scripts, including those that only run for local packages.
 
       Note that commands explicitly intended to run a particular script, such
       as \`npm start\`, \`npm stop\`, \`npm restart\`, \`npm test\`, and \`npm
@@ -869,6 +870,16 @@ const definitions = {
       set, but they will *not* run any pre- or post-scripts.
     `,
     flatten,
+  }),
+  'allow-install-scripts': new Definition('allow-install-scripts', {
+    default: false,
+    type: Boolean,
+    description: `
+      If true, allows execution of \`preinstall`\, \`install\`, and \`postinstall\`
+      scripts when running npm install or npm ci for dependencies originating
+      from remote package registries.
+    `,
+     flatten,
   }),
   include: new Definition('include', {
     default: [],
